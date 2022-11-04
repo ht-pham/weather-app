@@ -8,6 +8,7 @@ h1 {
     text-align: center;
 }
 
-p, label {
-    color: #219ebc;
+p, form, label {
+    color: white;
+    text-align: center;
 }

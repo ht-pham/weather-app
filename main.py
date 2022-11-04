@@ -13,9 +13,14 @@ def main_page():
 
 @app.route("/search",methods=["POST"])
 def search():
-    url = "https://weatherapi-com.p.rapidapi.com/current.json"
-    
+    url_current = "https://weatherapi-com.p.rapidapi.com/current.json"
+    url_astronomy = "https://weatherapi-com.p.rapidapi.com/astronomy.json"
+
     city = form.form["city"]
+    # Exception Handling: Empty Input ==> Refresh Main Page
+    if city == "":
+        return render_template("index.html")
+
     querystring = {"q":city}
     
     headers = {
@@ -23,14 +28,22 @@ def search():
         "X-RapidAPI-Host": "weatherapi-com.p.rapidapi.com"
     }   
 
-    response = requests.request("GET", url, headers=headers, params=querystring)
-    json_data = json.loads(response.text)
-    
-    condition = json_data["current"]["condition"]["text"] # e.g. cloudy, sunny, foggy, etc.
-    temp = {"C":json_data["current"]["temp_c"],"F":json_data["current"]["temp_f"],
-                    "Real-Feel C":json_data["current"]["feelslike_c"],"Real-Feel F":json_data["current"]["feelslike_f"]}
-    wind = {"degree":json_data["current"]["wind_degree"],"dir":json_data["current"]["wind_dir"],
-            "speed_kph":json_data["current"]["wind_kph"],"speed_mph":json_data["current"]["wind_mph"]}
+    response_current = requests.request("GET", url_current, headers=headers, params=querystring)
+    current_data = json.loads(response_current.text)
+
+    response_astronomy = requests.request("GET", url_astronomy, headers=headers, params=querystring)
+    astro_data = json.loads(response_astronomy.text)
+
+    city = current_data["location"]["name"]+", "+current_data["location"]["region"]
+    time = current_data["location"]["localtime"]
+    sunrise = astro_data["astronomy"]["astro"]["sunrise"]
+    sunset = astro_data["astronomy"]["astro"]["sunset"]
+
+    condition = current_data["current"]["condition"]["text"] # e.g. cloudy, sunny, foggy, etc.
+    temp = {"C":current_data["current"]["temp_c"],"F":current_data["current"]["temp_f"],
+                    "Real-Feel C":current_data["current"]["feelslike_c"],"Real-Feel F":current_data["current"]["feelslike_f"]}
+    wind = {"degree":current_data["current"]["wind_degree"],"dir":current_data["current"]["wind_dir"],
+            "speed_kph":current_data["current"]["wind_kph"],"speed_mph":current_data["current"]["wind_mph"]}
 
     """ # This is future use to the database
     with open("templates/location.html","w") as page:
@@ -42,7 +55,10 @@ def search():
     
     page.close() 
     """
-    return render_template("location.html",var1=city,var2=condition,var3=temp["C"],var4=temp["F"],
-            var5=temp["Real-Feel C"],var6=temp["Real-Feel F"],var7=wind["degree"],var8=wind["dir"],
+    return render_template("location.html",var1=city,
+            time=time,sunrise=sunrise,sunset=sunset,
+            var2=condition,var3=temp["C"],var4=temp["F"],
+            var5=temp["Real-Feel C"],var6=temp["Real-Feel F"],
+            var7=wind["degree"],var8=wind["dir"],
             var9=wind["speed_kph"],var10=wind["speed_mph"])
     
