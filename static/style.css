@@ -8,7 +8,13 @@ h1 {
     text-align: center;
 }
 
-p, form, label {
+p, .container {
     color: white;
     text-align: center;
+}
+
+.topcorner{
+    position:absolute;
+    top:0px;
+    right:0px;
 }
