@@ -24,9 +24,11 @@ $ python3 -m venv venv
 #### Option 2: Flask installation on your machine
 In your terminal/cmd prompt, run ```pip install Flask```
 ## How to Run the project
+### Download the project
+In your terminal/cmd prompt, run ```git clone https://github.com/ht-pham/weather-app.git```
+### How to Run the Application
 #### Option 1: On a Virtual Environment
 In your terminal/cmd prompt:
-1. Repeat step 2 and step 3 in Flask installation on a virtual environment
 1. Repeat step 2 and step 3 in Flask installation on a virtual environment
 2. Run ```flask --app main run```
 #### Option 2: On your machine
