@@ -9,7 +9,7 @@ app = Flask(__name__,template_folder="templates")
 
 @app.route("/")
 def main_page():
-    return render_template("index.html")
+    return render_template("index.html",var1="")
 
 @app.route("/search",methods=["POST"])
 def search():
@@ -19,7 +19,7 @@ def search():
     city = form.form["city"]
     # Exception Handling: Empty Input ==> Refresh Main Page
     if city == "":
-        return render_template("index.html")
+        return render_template("index.html",var1="Please enter a city")
 
     querystring = {"q":city}
     
@@ -31,6 +31,15 @@ def search():
     response_current = requests.request("GET", url_current, headers=headers, params=querystring)
     current_data = json.loads(response_current.text)
 
+    # When the user gives an unvalid input other than empty string
+    # i.e. 4xx Error 
+    if (response_current.status_code in range(400,500)):
+        return render_template("index.html",var1="No Matching Found Location")
+    # When some codes are not working properly
+    # i.e. 5xx Error
+    elif (response_current.status_code in range(500,600)):
+        return render_template("error.html",var1=response_current.status_code,var2=response_current.reason)
+    
     response_astronomy = requests.request("GET", url_astronomy, headers=headers, params=querystring)
     astro_data = json.loads(response_astronomy.text)
 
