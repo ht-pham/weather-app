@@ -14,7 +14,8 @@ def main_page():
 def location():
     url = "https://weatherapi-com.p.rapidapi.com/current.json"
     
-    """ userinput = input("Enter location: ")
+    """ 
+    userinput = input("Enter location: ")
     
     while re.findall("\d",userinput):
         print("ERROR: Please enter only location name, not ZIP code")
@@ -38,19 +39,16 @@ def location():
     wind = {"degree":json_data["current"]["wind_degree"],"dir":json_data["current"]["wind_dir"],
             "speed_kph":json_data["current"]["wind_kph"],"speed_mph":json_data["current"]["wind_mph"]}
 
-    display_output = "<p>Location: "+querystring["q"]+"<br>"+"Condition: "+condition+"<br>"
-    display_output += "Temparture: "+str(temp["C"])+"C or "+str(temp["F"])+"F<br>"
-    display_output += "Real-Feel Temperature now: "+str(temp["Real-Feel C"])+"C or " +str(temp["Real-Feel F"])+"F"
-    display_output += "<br>"+"Wind: "+str(wind["degree"])+". "+wind["dir"]+" , speed: "+str(wind["speed_kph"])+"kph or "+str(wind["speed_mph"])+"mph</p>"
-
-    """ with open("templates/location.html","w") as page:
+    """ # This is future use to the database
+    with open("templates/location.html","w") as page:
         for line in page:
             if not re.findall("</p>",line):
                 continue
             else:
                 page.write(display_output)
     
-    page.close() """
+    page.close() 
+    """
     return render_template("location.html",var1="San Antonio, TX",var2=condition,var3=temp["C"],var4=temp["F"],
             var5=temp["Real-Feel C"],var6=temp["Real-Feel F"],var7=wind["degree"],var8=wind["dir"],
             var9=wind["speed_kph"],var10=wind["speed_mph"])
