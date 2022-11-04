@@ -36,5 +36,6 @@ In terminal:
 1. Change directory to where 'main.py' is located: ```$ cd your-local-repo```
 2. Run the program: ```your-local-repo$ flask --app main run```
 ## Acknowledgement
-Thank you to @Pixeden team for the open-source icons which were wonderfully made by the team.
+Thank you to @RapidAPI for the free subcription for [weather api](https://rapidapi.com/weatherapi/api/weatherapi-com/).
+Thank you to @Pixeden team for the open-source [weather icons](https://www.pixeden.com/icon-fonts/weather-7-icon-font-set) which were wonderfully made by the team.
 
