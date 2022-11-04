@@ -1,0 +1,13 @@
+/* Color Pallete: https://coolors.co/palette/8ecae6-219ebc-023047-ffb703-fb8500 */
+body {
+    background-color: #023047;
+}
+h1 {
+    font-family: "helvetica", sans-serif;
+    color: #fb8500;
+    text-align: center;
+}
+
+p {
+    color: #219ebc;
+}
