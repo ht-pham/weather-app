@@ -1,5 +1,6 @@
 from flask import Flask
 from flask import render_template
+from flask import request as form
 
 import requests
 import json
@@ -10,21 +11,13 @@ app = Flask(__name__,template_folder="templates")
 def main_page():
     return render_template("index.html")
 
-@app.route("/sanantonio")
-def location():
+@app.route("/search",methods=["POST"])
+def search():
     url = "https://weatherapi-com.p.rapidapi.com/current.json"
     
-    """ 
-    userinput = input("Enter location: ")
+    city = form.form["city"]
+    querystring = {"q":city}
     
-    while re.findall("\d",userinput):
-        print("ERROR: Please enter only location name, not ZIP code")
-        userinput = input("Enter location: ")
-        
-    querystring = {"q":userinput}
-    """
-
-    querystring = {"q":"San Antonio,TX"}
     headers = {
         "X-RapidAPI-Key": "153f94ba4amsh2b77e486cbac9e4p18bfaejsn63e24918a3ba",
         "X-RapidAPI-Host": "weatherapi-com.p.rapidapi.com"
@@ -49,7 +42,7 @@ def location():
     
     page.close() 
     """
-    return render_template("location.html",var1="San Antonio, TX",var2=condition,var3=temp["C"],var4=temp["F"],
+    return render_template("location.html",var1=city,var2=condition,var3=temp["C"],var4=temp["F"],
             var5=temp["Real-Feel C"],var6=temp["Real-Feel F"],var7=wind["degree"],var8=wind["dir"],
             var9=wind["speed_kph"],var10=wind["speed_mph"])
     

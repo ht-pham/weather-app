@@ -6,9 +6,9 @@
     <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    <h1>Hello, World</h1>
+    <h1>Precise Weather</h1>
     <div class="container">
-        <form action="location" method="post" id="search">
+        <form action="{{ url_for('search') }}" method="post" id="search">
             <label for="city">City: </label>
             <input type="text" id="city" name="city" placeholder="Enter your city" />
             <small></small>

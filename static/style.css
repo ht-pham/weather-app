@@ -8,6 +8,6 @@ h1 {
     text-align: center;
 }
 
-p {
+p, label {
     color: #219ebc;
 }
