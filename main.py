@@ -8,6 +8,10 @@ app = Flask(__name__,template_folder="templates")
 
 @app.route("/")
 def main_page():
+    return render_template("index.html")
+
+@app.route("/sanantonio")
+def location():
     url = "https://weatherapi-com.p.rapidapi.com/current.json"
     
     """ userinput = input("Enter location: ")
@@ -39,13 +43,15 @@ def main_page():
     display_output += "Real-Feel Temperature now: "+str(temp["Real-Feel C"])+"C or " +str(temp["Real-Feel F"])+"F"
     display_output += "<br>"+"Wind: "+str(wind["degree"])+". "+wind["dir"]+" , speed: "+str(wind["speed_kph"])+"kph or "+str(wind["speed_mph"])+"mph</p>"
 
-    """ with open("templates/index.html","w") as page:
+    """ with open("templates/location.html","w") as page:
         for line in page:
             if not re.findall("</p>",line):
                 continue
             else:
                 page.write(display_output)
     
-    page.close()
-    return render_template("index.html") """
-    return display_output
+    page.close() """
+    return render_template("location.html",var1="San Antonio, TX",var2=condition,var3=temp["C"],var4=temp["F"],
+            var5=temp["Real-Feel C"],var6=temp["Real-Feel F"],var7=wind["degree"],var8=wind["dir"],
+            var9=wind["speed_kph"],var10=wind["speed_mph"])
+    

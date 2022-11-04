@@ -1,10 +1,17 @@
 <!DOCTYPE html>
 <head>
-    <title>Precise Weather</title>
+    <title>Precise Weather at {{ var1 }}</title>
     <script src="{{ url_for('static', filename='script.js') }}"></script>
     <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    <h1>Welcome to {{var1}}</h1>
+    <h1>Welcome to {{ var1 }}</h1>
 
+    <p> Location: {{ var1 }} <br>
+        Condition: {{ var2}} <br>
+        Temperature: {{ var3 }} C / {{ var4 }} F <br>
+        Real-Feel Temperature: {{ var5 }} C / {{ var6 }} <br>
+        Wind: {{ var7 }}. {{ var8 }} at speed of {{ var9 }} kph or {{ var10 }} mph
+    </p>
+   
 </body>

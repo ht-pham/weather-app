@@ -7,3 +7,7 @@ function changeBackground(){
         document.getElementsByTagName("p").style.color = "black";
     }
 }
+
+function getCurrentTime(){
+    document.getElementById("current_time").innerHTML = new Date().getUTCDate();
+}
