@@ -15,9 +15,9 @@ $ mkdir your-local-repo
 $ cd your-local-repo
 $ python3 -m venv venv
 ```
-- Step 2: Activate your virtual environment
+- Step 2: Activate your virtual environment\\
 ```$ .venv/bin/activate```
-- Step 3: Install Flask onto the virtual environment
+- Step 3: Install Flask onto the virtual environment\\
 ```pip install Flask```
 \
 **Note**: you will have to repeat the steps 2 and 3 every time you want to run the project
@@ -26,7 +26,7 @@ In your terminal/cmd prompt, run ```pip install Flask```
 ## How to Run the project
 #### Option 1: On a Virtual Environment
 In your terminal/cmd prompt:
-1. Do step 2 and step 3
+1. Repeat step 2 and step 3 in Flask installation on a virtual environment
 2. Run ```flask --app main run```
 #### Option 2: On your machine
 In terminal:
