@@ -64,10 +64,10 @@ def search():
     
     page.close() 
     """
-    return render_template("location.html",var1=city,
+    return render_template("location.html",location=city,
             time=time,sunrise=sunrise,sunset=sunset,
-            var2=condition,var3=temp["C"],var4=temp["F"],
-            var5=temp["Real-Feel C"],var6=temp["Real-Feel F"],
-            var7=wind["degree"],var8=wind["dir"],
-            var9=wind["speed_kph"],var10=wind["speed_mph"])
+            desc=condition,celsius=temp["C"],fahrenheit=temp["F"],
+            realfeel_c=temp["Real-Feel C"],realfeel_f=temp["Real-Feel F"],
+            degree=wind["degree"],direction=wind["dir"],
+            kmh=wind["speed_kph"],mph=wind["speed_mph"])
     
