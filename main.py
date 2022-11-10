@@ -53,7 +53,10 @@ def search():
         return render_template("error.html",status_code=response_current.status_code,error_message=response_current.reason)
     
     # Otherwise (i.e. it is a valid input which is a city/town), return the info
-    city = current_data["location"]["name"]+", "+current_data["location"]["region"]
+    if current_data["location"]["region"] == "":
+        city = current_data["location"]["name"]+", "+current_data["location"]["country"]
+    else:
+        city = current_data["location"]["name"]+", "+current_data["location"]["region"]
     time = current_data["location"]["localtime"]
     sunrise = astro_data["astronomy"]["astro"]["sunrise"]
     sunset = astro_data["astronomy"]["astro"]["sunset"]
@@ -70,4 +73,4 @@ def search():
             realfeel_c=temp["Real-Feel C"],realfeel_f=temp["Real-Feel F"],
             degree=wind["degree"],direction=wind["dir"],
             kmh=wind["speed_kph"],mph=wind["speed_mph"])
-    
+
