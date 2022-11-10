@@ -9,40 +9,50 @@ app = Flask(__name__,template_folder="templates")
 
 @app.route("/")
 def main_page():
-    return render_template("index.html",var1="")
+    return render_template("index.html",error_message="")
 
 @app.route("/search",methods=["POST"])
 def search():
+    # URLs for HTTP POST requests
     url_current = "https://weatherapi-com.p.rapidapi.com/current.json"
     url_astronomy = "https://weatherapi-com.p.rapidapi.com/astronomy.json"
 
-    city = form.form["city"]
-    # Exception Handling: Empty Input ==> Refresh Main Page
-    if city == "":
-        return render_template("index.html",var1="Please enter a city")
-
-    querystring = {"q":city}
-    
+    # Headers info { API key & and API host } to make API calls
     headers = {
         "X-RapidAPI-Key": "153f94ba4amsh2b77e486cbac9e4p18bfaejsn63e24918a3ba",
         "X-RapidAPI-Host": "weatherapi-com.p.rapidapi.com"
     }   
 
+    # Take user input and save it as the variable 'city'
+    city = form.form["city"]
+
+    # Exception Handling: Empty Input ==> Refresh Main Page
+    if city == "":
+        return render_template("index.html",error_message="Please enter a city")
+    
+    # Otherwise, take the entered user input 'city' to the query
+    querystring = {"q":city}
+
+    # First API call for the real-time weather info in the city
     response_current = requests.request("GET", url_current, headers=headers, params=querystring)
     current_data = json.loads(response_current.text)
-
-    # When the user gives an unvalid input other than empty string
-    # i.e. 4xx Error 
-    if (response_current.status_code in range(400,500)):
-        return render_template("index.html",var1="No Matching Found Location")
-    # When some codes are not working properly
-    # i.e. 5xx Error
-    elif (response_current.status_code in range(500,600)):
-        return render_template("error.html",var1=response_current.status_code,var2=response_current.reason)
-    
+    # Second API call for the astronomy info of the city (i.e. sunrise and sunset time)
     response_astronomy = requests.request("GET", url_astronomy, headers=headers, params=querystring)
     astro_data = json.loads(response_astronomy.text)
 
+    # Exception Handling: invalid user input
+    # When the user gives an unvalid input other than empty string
+    # return 4xx Error 
+    if (response_current.status_code in range(400,500)):
+        return render_template("index.html",error_message="No Matching Found Location")
+    
+    # Exception Handling: buggy codes/internal server issues
+    # When some codes are not working properly
+    # return 5xx Error
+    if (response_current.status_code in range(500,600)):
+        return render_template("error.html",status_code=response_current.status_code,error_message=response_current.reason)
+    
+    # Otherwise (i.e. it is a valid input which is a city/town), return the info
     city = current_data["location"]["name"]+", "+current_data["location"]["region"]
     time = current_data["location"]["localtime"]
     sunrise = astro_data["astronomy"]["astro"]["sunrise"]
@@ -54,16 +64,6 @@ def search():
     wind = {"degree":current_data["current"]["wind_degree"],"dir":current_data["current"]["wind_dir"],
             "speed_kph":current_data["current"]["wind_kph"],"speed_mph":current_data["current"]["wind_mph"]}
 
-    """ # This is future use to the database
-    with open("templates/location.html","w") as page:
-        for line in page:
-            if not re.findall("</p>",line):
-                continue
-            else:
-                page.write(display_output)
-    
-    page.close() 
-    """
     return render_template("location.html",location=city,
             time=time,sunrise=sunrise,sunset=sunset,
             desc=condition,celsius=temp["C"],fahrenheit=temp["F"],
