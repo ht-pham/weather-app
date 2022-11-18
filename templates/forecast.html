@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<head>
+    <title>Precise Weather at {{ location }}</title>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+    <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <form action="{{ url_for('forecast') }}" method="post" id="forecast">
+            <!-- <label for="city">City: </label> -->
+            <input type="text" id="city" name="city" size="50%" placeholder="Enter your city" />
+            <small></small>
+            <button type="submit" id="forecast">Search</button>
+        </form>
+    </div>  
+
+    <h1>Weather for {{ tom_date }}</h1>
+
+    <p>
+        Sunrise: {{ tom_sunrise }}. Sunset: {{ tom_sunset }}
+    </p>
+    <p>
+        Condition: {{ tom_desc }} <br>
+        High: {{ tom_high_celsius }} C / {{ tom_high_fahrenheit }} F <br>
+        Low: {{ tom_low_celsius }} C / {{ tom_low_fahrenheit }} F <br>
+        Maximum Windspeed: {{ tom_kmh }} kph or {{ tom_mph }} mph <br>
+        Average Humidity: {{tom_hum}} <br>
+        Chance of Rain: {{tom_rain_chance}} <br>
+        Chance of Snow: {{tom_snow_chance}}
+    </p>
+
+    <h1>Weather for {{ nd_date }}</h1>
+
+    <p>
+        Sunrise: {{ nd_sunrise }}. Sunset: {{ nd_sunset }}
+    </p>
+    <p>
+        Condition: {{ nd_desc }} <br>
+        High: {{ nd_high_celsius }} C / {{ nd_high_fahrenheit }} F <br>
+        Low: {{ nd_low_celsius }} C / {{ nd_low_fahrenheit }} F <br>
+        Maximum Windspeed: {{ nd_kmh }} kph or {{ nd_mph }} mph <br>
+        Average Humidity: {{nd_hum}} <br>
+        Chance of Rain: {{nd_rain_chance}} <br>
+        Chance of Snow: {{nd_snow_chance}}
+    </p>
+    
+</body>

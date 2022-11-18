@@ -111,29 +111,13 @@ def forecast():
     if (forecast_response.status_code in range(500,600)):
         return render_template("error.html",status_code=forecast_response.status_code,error_message=forecast_response.reason)
     
-    # Otherwise (i.e. it is a valid input which is a city/town), return the info
-    # if forecast_data["location"]["region"] == "" or forecast_data["location"]["region"] == forecast_data["location"]["name"] :
-    #     city = forecast_data["location"]["name"]+", "+forecast_data["location"]["country"]
-    # else:
-    #     city = forecast_data["location"]["name"]+", "+forecast_data["location"]["region"]
-    # time = forecast_data["location"]["localtime"]
-    # sunrise = forecast_data["astronomy"]["astro"]["sunrise"]
-    # sunset = forecast_data["astronomy"]["astro"]["sunset"]
-
-    # condition = forecast_data["current"]["condition"]["text"] # e.g. cloudy, sunny, foggy, etc.
-    # temp = {"C":forecast_data["current"]["temp_c"],"F":forecast_data["current"]["temp_f"],
-    #                 "Real-Feel C":forecast_data["current"]["feelslike_c"],"Real-Feel F":forecast_data["current"]["feelslike_f"]}
-    # wind = {"degree":forecast_data["current"]["wind_degree"],"dir":forecast_data["current"]["wind_dir"],
-    #         "speed_kph":forecast_data["current"]["wind_kph"],"speed_mph":forecast_data["current"]["wind_mph"]}
-
-    # return render_template("forecast.html",location=city,
-    #         time=time,sunrise=sunrise,sunset=sunset,
-    #         desc=condition,celsius=temp["C"],fahrenheit=temp["F"],
-    #         realfeel_c=temp["Real-Feel C"],realfeel_f=temp["Real-Feel F"],
-    #         degree=wind["degree"],direction=wind["dir"],
-    #         kmh=wind["speed_kph"],mph=wind["speed_mph"])
     tomorrow = str(forecast_data["forecast"]["forecastday"][1]["date"])
     tomorrow_data = forecast_data["forecast"]["forecastday"][1]["day"]
     tomorrow_astro = forecast_data["forecast"]["forecastday"][1]["astro"]
 
-    return tomorrow+"\n"+str(tomorrow_data["maxtemp_f"])+"\n"+str(tomorrow_data["mintemp_f"])+"\n"+str(tomorrow_astro["sunrise"])
+    return render_template("forecast.html",location=city,
+            time=time,sunrise=sunrise,sunset=sunset,
+            desc=condition,celsius=temp["C"],fahrenheit=temp["F"],
+            realfeel_c=temp["Real-Feel C"],realfeel_f=temp["Real-Feel F"],
+            degree=wind["degree"],direction=wind["dir"],
+            kmh=wind["speed_kph"],mph=wind["speed_mph"])
