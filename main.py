@@ -32,7 +32,7 @@ def search():
             "X-RapidAPI-Key": "153f94ba4amsh2b77e486cbac9e4p18bfaejsn63e24918a3ba",
             "X-RapidAPI-Host": "weatherapi-com.p.rapidapi.com"
         }   
-        # Otherwise, take the entered user input 'city' to the query
+        # Take the entered user input 'city' to the query
         querystring = {"q":city}
 
         # First API call for the real-time weather info in the city
@@ -86,7 +86,7 @@ def search():
             "X-RapidAPI-Host": "weatherapi-com.p.rapidapi.com"
         }   
 
-        # Otherwise, take the entered user input 'city' to the query
+        # Take the entered user input 'city' to the query
         querystring = {"q":city,"days":"3"}
 
         # First API call for the real-time weather info in the city
@@ -105,10 +105,13 @@ def search():
         if (forecast_response.status_code in range(500,600)):
             return render_template("error.html",status_code=forecast_response.status_code,error_message=forecast_response.reason)
         
+        # Forecast Data is stored in the following variables
         tomorrow = str(forecast_data["forecast"]["forecastday"][1]["date"])
         tomorrow_data = forecast_data["forecast"]["forecastday"][1]["day"]
         tomorrow_astro = forecast_data["forecast"]["forecastday"][1]["astro"]
 
+        # (Soon) Render variables to template 'forecast.html'
+        # return render_templates("forecast.html")
         return tomorrow+"\n"+str(tomorrow_data["maxtemp_f"])+"\n"+str(tomorrow_data["mintemp_f"])+"\n"+str(tomorrow_astro["sunrise"])
 
 
