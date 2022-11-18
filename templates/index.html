@@ -7,9 +7,19 @@
 </head>
 <body>
     <h1>Precise Weather</h1>
-    <div class="container">
+<!--     <div class="container">
         <form action="{{ url_for('search') }}" method="post" id="search">
-            <label for="city">City: </label>
+            <label for="city">Current Weather: </label>
+            <input type="text" id="city" name="city" placeholder="Enter your city" />
+            <button type="submit" id="search">Search</button>
+            <br>
+            <small style="color:#ffb703;">{{ error_message }}</small>
+        </form>
+    </div>  -->
+
+    <div class="container">
+        <form action="{{ url_for('forecast') }}" method="post" id="forecast">
+            <label for="city">Forecast: </label>
             <input type="text" id="city" name="city" placeholder="Enter your city" />
             <button type="submit" id="search">Search</button>
             <br>
