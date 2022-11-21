@@ -63,11 +63,13 @@ def search():
         sunrise = astro_data["astronomy"]["astro"]["sunrise"]
         sunset = astro_data["astronomy"]["astro"]["sunset"]
 
+        condition_icon = current_data["current"]["condition"]["icon"]
         condition = current_data["current"]["condition"]["text"] # e.g. cloudy, sunny, foggy, etc.
         temp = {"C":current_data["current"]["temp_c"],"F":current_data["current"]["temp_f"],
                         "Real-Feel C":current_data["current"]["feelslike_c"],"Real-Feel F":current_data["current"]["feelslike_f"]}
         wind = {"degree":current_data["current"]["wind_degree"],"dir":current_data["current"]["wind_dir"],
                 "speed_kph":current_data["current"]["wind_kph"],"speed_mph":current_data["current"]["wind_mph"]}
+
 
         current_pic = current_data["current"]["condition"]["icon"]
 
