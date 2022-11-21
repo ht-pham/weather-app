@@ -110,7 +110,6 @@ def search():
         tomorrow_data = forecast_data["forecast"]["forecastday"][1]["day"]
         tomorrow_astro = forecast_data["forecast"]["forecastday"][1]["astro"]
 
-<<<<<<< HEAD
         tomorrow_sunrise = tomorrow_astro["sunrise"]
         tomorrow_sunset = tomorrow_astro["sunset"]
 
