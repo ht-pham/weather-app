@@ -2,9 +2,9 @@ from flask import Flask
 from flask import render_template
 from flask import request as form
 
-import requests
 import sys
 sys.path.insest(0,'lib')
+import requests
 import json
 import re 
 app = Flask(__name__,template_folder="templates")
