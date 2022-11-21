@@ -6,11 +6,12 @@
 </head>
 <body>
     <div class="container">
-        <form action="{{ url_for('forecast') }}" method="post" id="forecast">
+        <form action="{{ url_for('search') }}" method="post" id="search">
             <!-- <label for="city">City: </label> -->
             <input type="text" id="city" name="city" size="50%" placeholder="Enter your city" />
             <small></small>
-            <button type="submit" id="forecast">Search</button>
+            <button type="submit" name="action" value="now" id="now">Now</button>
+            <button type="submit" name="action" value="forecast" id="forecast">3-day Forecast</button>
         </form>
     </div>  
 
