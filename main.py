@@ -63,6 +63,7 @@ def search():
         sunrise = astro_data["astronomy"]["astro"]["sunrise"]
         sunset = astro_data["astronomy"]["astro"]["sunset"]
 
+        condition_icon = current_data["current"]["condition"]["icon"]
         condition = current_data["current"]["condition"]["text"] # e.g. cloudy, sunny, foggy, etc.
         temp = {"C":current_data["current"]["temp_c"],"F":current_data["current"]["temp_f"],
                         "Real-Feel C":current_data["current"]["feelslike_c"],"Real-Feel F":current_data["current"]["feelslike_f"]}
@@ -70,7 +71,7 @@ def search():
                 "speed_kph":current_data["current"]["wind_kph"],"speed_mph":current_data["current"]["wind_mph"]}
 
         return render_template("location.html",location=city,
-                time=time,sunrise=sunrise,sunset=sunset,
+                time=time,sunrise=sunrise,sunset=sunset,now_icon=condition_icon,now_desc=condition,
                 desc=condition,celsius=temp["C"],fahrenheit=temp["F"],
                 realfeel_c=temp["Real-Feel C"],realfeel_f=temp["Real-Feel F"],
                 degree=wind["degree"],direction=wind["dir"],
