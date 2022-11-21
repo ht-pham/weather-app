@@ -1,10 +1,12 @@
 # Weather App
 ## Overview
-This is a final project for UTSA CS5573 Cloud Computing course in Fall 2022. The project is built in Python with Flask framework. 
+This is a final project for UTSA CS5573 Cloud Computing course in Fall 2022. The project is built in Python with Flask framework and deployed by Google AppEngine. The public URL for this application is [here](https://cloud-computing-fall22.uc.r.appspot.com).
 ## Structure of the project
-1. 'static' folder: where JS and CSS files are saved
-2. 'templates' folder: where all .html files are saved
-3. main.py: the application
+1. app.yaml: the configuration file for Google AppEngine Deployment
+2. 'static' folder: where JS and CSS files are saved
+3. 'templates' folder: where all .html files are saved
+4. requirements.txt: the list of required framework/library to run this application on local host.
+5. main.py: the Flask application
 ## Software Requirements
 1. Python 3.7+ or any latest version (see [link](https://www.python.org/downloads/) for lastest download)
 2. Flask framework: 
@@ -37,5 +39,4 @@ In terminal:
 2. Run the program: ```your-local-repo$ flask --app main run```
 ## Acknowledgement
 Thank you to @RapidAPI for the free subcription for [weather api](https://rapidapi.com/weatherapi/api/weatherapi-com/).
-Thank you to @Pixeden team for the open-source [weather icons](https://www.pixeden.com/icon-fonts/weather-7-icon-font-set) which were wonderfully made by the team.
 
