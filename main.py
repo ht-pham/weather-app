@@ -69,7 +69,9 @@ def search():
         wind = {"degree":current_data["current"]["wind_degree"],"dir":current_data["current"]["wind_dir"],
                 "speed_kph":current_data["current"]["wind_kph"],"speed_mph":current_data["current"]["wind_mph"]}
 
-        return render_template("location.html",location=city,
+        current_pic = current_data["current"]["condition"]["icon"]
+
+        return render_template("location.html",location=city, now_url=current_pic, now_desc=condition,
                 time=time,sunrise=sunrise,sunset=sunset,
                 desc=condition,celsius=temp["C"],fahrenheit=temp["F"],
                 realfeel_c=temp["Real-Feel C"],realfeel_f=temp["Real-Feel F"],
