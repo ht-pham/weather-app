@@ -9,7 +9,8 @@ This is a final project for UTSA CS5573 Cloud Computing course in Fall 2022. The
 5. main.py: the Flask application
 ## Software Requirements
 1. Python 3.7+ or any latest version (see [link](https://www.python.org/downloads/) for lastest download)
-2. Flask framework: 
+2. 'requests' module: for API calls
+3. Flask framework: 
 #### Option 1: Flask installation on a virtual environment
 - Step 1: Create a virtual environment
 ```
@@ -21,7 +22,7 @@ $ python3 -m venv venv
 ```$ .venv/bin/activate```
 - Step 3: Install Flask onto the virtual environment\
 ```pip install Flask```
-\
+
 **Note**: you will have to repeat the steps 2 and 3 every time you want to run the project
 #### Option 2: Flask installation on your machine
 In your terminal/cmd prompt, run ```pip install Flask```
@@ -34,7 +35,7 @@ In your terminal/cmd prompt:
 1. Repeat step 2 and step 3 in Flask installation on a virtual environment
 2. Run ```flask --app main run```
 #### Option 2: On your machine
-In terminal:
+After installing the two required package (Flask and requests), in terminal:
 1. Change directory to where 'main.py' is located: ```$ cd your-local-repo```
 2. Run the program: ```your-local-repo$ flask --app main run```
 ## Acknowledgement
