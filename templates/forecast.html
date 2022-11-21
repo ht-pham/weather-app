@@ -15,12 +15,15 @@
     </div>  
 
     <h1>Weather for {{ tom_date }}</h1>
+    <p>
+        <img src={{ tom_url }} alt={{ tom_desc }}>
+    </p>
 
     <p>
-        Sunrise: {{ tom_sunrise }}. Sunset: {{ tom_sunset }}
+        Condition: {{ tom_desc }}
     </p>
+
     <p>
-        Condition: {{ tom_desc }} <br>
         High: {{ tom_high_celsius }} C / {{ tom_high_fahrenheit }} F <br>
         Low: {{ tom_low_celsius }} C / {{ tom_low_fahrenheit }} F <br>
         Maximum Windspeed: {{ tom_kmh }} kph or {{ tom_mph }} mph <br>
@@ -29,19 +32,34 @@
         Chance of Snow: {{tom_snow_chance}}
     </p>
 
-    <h1>Weather for {{ nd_date }}</h1>
+    <p>
+        Sunrise: {{ tom_sunrise }}, Sunset: {{ tom_sunset }}
+    </p>
 
     <p>
-        Sunrise: {{ nd_sunrise }}. Sunset: {{ nd_sunset }}
+        <br>
     </p>
+
+    <h1>Weather for {{ nd_date }}</h1>
     <p>
-        Condition: {{ nd_desc }} <br>
+        <img src={{ nd_url }} alt={{ nd_desc }}>
+    </p>
+
+    <p>
+        Condition: {{ nd_desc }}
+    </p>
+
+    <p>
         High: {{ nd_high_celsius }} C / {{ nd_high_fahrenheit }} F <br>
         Low: {{ nd_low_celsius }} C / {{ nd_low_fahrenheit }} F <br>
-        Maximum Windspeed: {{ nd_kmh }} kph or {{ nd_mph }} mph <br>
+        Maximum Windspeed: {{ nd_kph }} kph or {{ nd_mph }} mph <br>
         Average Humidity: {{nd_hum}} <br>
         Chance of Rain: {{nd_rain_chance}} <br>
         Chance of Snow: {{nd_snow_chance}}
     </p>
-    
+
+    <p>
+        Sunrise: {{ nd_sunrise }}, Sunset: {{ nd_sunset }}
+    </p>
+
 </body>

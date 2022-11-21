@@ -32,7 +32,7 @@ def search():
             "X-RapidAPI-Key": "153f94ba4amsh2b77e486cbac9e4p18bfaejsn63e24918a3ba",
             "X-RapidAPI-Host": "weatherapi-com.p.rapidapi.com"
         }   
-        # Otherwise, take the entered user input 'city' to the query
+        # Take the entered user input 'city' to the query
         querystring = {"q":city}
 
         # First API call for the real-time weather info in the city
@@ -86,7 +86,7 @@ def search():
             "X-RapidAPI-Host": "weatherapi-com.p.rapidapi.com"
         }   
 
-        # Otherwise, take the entered user input 'city' to the query
+        # Take the entered user input 'city' to the query
         querystring = {"q":city,"days":"3"}
 
         # First API call for the real-time weather info in the city
@@ -105,53 +105,59 @@ def search():
         if (forecast_response.status_code in range(500,600)):
             return render_template("error.html",status_code=forecast_response.status_code,error_message=forecast_response.reason)
         
+        # Forecast Data is stored in the following variables
         tomorrow = str(forecast_data["forecast"]["forecastday"][1]["date"])
         tomorrow_data = forecast_data["forecast"]["forecastday"][1]["day"]
         tomorrow_astro = forecast_data["forecast"]["forecastday"][1]["astro"]
 
-        return tomorrow+"\n"+str(tomorrow_data["maxtemp_f"])+"\n"+str(tomorrow_data["mintemp_f"])+"\n"+str(tomorrow_astro["sunrise"])
+        tomorrow_sunrise = tomorrow_astro["sunrise"]
+        tomorrow_sunset = tomorrow_astro["sunset"]
+
+        tomorrow_url = tomorrow_data["condition"]["icon"]
+
+        tomorrow_condition = tomorrow_data["condition"]["text"]
+        tomorrow_c_high = tomorrow_data["maxtemp_c"]
+        tomorrow_f_high = tomorrow_data["maxtemp_f"]
+        tomorrow_c_low = tomorrow_data["mintemp_c"]
+        tomorrow_f_low = tomorrow_data["mintemp_f"]
+        tomorrow_ws_kph = tomorrow_data["maxwind_kph"]
+        tomorrow_ws_mph = tomorrow_data["maxwind_mph"]
+        tomorrow_humidity = tomorrow_data["avghumidity"]
+        tomorrow_rain = tomorrow_data["daily_chance_of_rain"]
+        tomorrow_snow = tomorrow_data["daily_chance_of_snow"]
 
 
-@app.route("/forecast",methods=["POST"])
-def forecast():
-    # URLs for HTTP POST requests
-    url = "https://weatherapi-com.p.rapidapi.com/forecast.json"
+        nday = str(forecast_data["forecast"]["forecastday"][2]["date"])
+        nday_data = forecast_data["forecast"]["forecastday"][2]["day"]
+        nday_astro = forecast_data["forecast"]["forecastday"][2]["astro"]
 
-    # Headers info { API key & and API host } to make API calls
-    headers = {
-        "X-RapidAPI-Key": "153f94ba4amsh2b77e486cbac9e4p18bfaejsn63e24918a3ba",
-        "X-RapidAPI-Host": "weatherapi-com.p.rapidapi.com"
-    }   
+        nday_sunrise = nday_astro["sunrise"]
+        nday_sunset = nday_astro["sunset"]
 
-    # Take user input and save it as the variable 'city'
-    city = form.form["city"]
+        nday_url = nday_data["condition"]["icon"]
 
-    # Exception Handling: Empty Input ==> Refresh Main Page
-    if city == "":
-        return render_template("index.html",error_message="Please enter a city")
-    
-    # Otherwise, take the entered user input 'city' to the query
-    querystring = {"q":city,"days":"3"}
+        nday_condition = nday_data["condition"]["text"]
+        nday_c_high = nday_data["maxtemp_c"]
+        nday_f_high = nday_data["maxtemp_f"]
+        nday_c_low = nday_data["mintemp_c"]
+        nday_f_low = nday_data["mintemp_f"]
+        nday_ws_kph = nday_data["maxwind_kph"]
+        nday_ws_mph = nday_data["maxwind_mph"]
+        nday_humidity = nday_data["avghumidity"]
+        nday_rain = nday_data["daily_chance_of_rain"]
+        nday_snow = nday_data["daily_chance_of_snow"]
 
-    # First API call for the real-time weather info in the city
-    forecast_response = requests.request("GET", url, headers=headers, params=querystring)
-    forecast_data = json.loads(forecast_response.text)
-
-    # Exception Handling: invalid user input
-    # When the user gives an unvalid input other than empty string
-    # return 4xx Error 
-    if (forecast_response.status_code in range(400,500)):
-        return render_template("index.html",error_message="No Matching Found Location")
-    
-    # Exception Handling: buggy codes/internal server issues
-    # When some codes are not working properly
-    # return 5xx Error
-    if (forecast_response.status_code in range(500,600)):
-        return render_template("error.html",status_code=forecast_response.status_code,error_message=forecast_response.reason)
-    
-    
-    tomorrow = str(forecast_data["forecast"]["forecastday"][1]["date"])
-    tomorrow_data = forecast_data["forecast"]["forecastday"][1]["day"]
-    tomorrow_astro = forecast_data["forecast"]["forecastday"][1]["astro"]
-
-    return tomorrow+"\n"+str(tomorrow_data["maxtemp_f"])+"\n"+str(tomorrow_data["mintemp_f"])+"\n"+str(tomorrow_astro["sunrise"])
+        # Render variables to template 'forecast.html'
+        return render_template("forecast.html", tom_date=tomorrow, tom_url=tomorrow_url,
+                                tom_sunrise=tomorrow_sunrise, 
+                                tom_sunset=tomorrow_sunset, tom_desc=tomorrow_condition, 
+                                tom_high_celsius=tomorrow_c_high, tom_high_fahrenheit=tomorrow_f_high,
+                                tom_low_celsius=tomorrow_c_low, tom_low_fahrenheit=tomorrow_f_low,
+                                tom_kmh=tomorrow_ws_kph, tom_mph=tomorrow_ws_mph, tom_hum=tomorrow_humidity,
+                                tom_rain_chance=tomorrow_rain, tom_snow_chance=tomorrow_snow, nd_date=nday,
+                                nd_url=nday_url,
+                                nd_sunrise=nday_sunrise, nd_sunset=nday_sunset, nd_desc=nday_condition,
+                                nd_high_celsius=nday_c_high, nd_high_fahrenheit=nday_f_high, 
+                                nd_low_celsius=nday_c_low, nd_low_fahrenheit=nday_f_low, nd_kph=nday_ws_kph,
+                                nd_mph=nday_ws_mph, nd_hum=nday_humidity, nd_rain_chance=nday_rain,
+                                nd_snow_chance=nday_snow )
