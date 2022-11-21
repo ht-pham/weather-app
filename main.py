@@ -107,7 +107,7 @@ def search():
         # return 5xx Error
         if (forecast_response.status_code in range(500,600)):
             return render_template("error.html",status_code=forecast_response.status_code,error_message=forecast_response.reason)
-        
+
         # Forecast Data is stored in the following variables
         tomorrow = str(forecast_data["forecast"]["forecastday"][1]["date"])
         tomorrow_data = forecast_data["forecast"]["forecastday"][1]["day"]
@@ -149,8 +149,12 @@ def search():
         nday_rain = nday_data["daily_chance_of_rain"]
         nday_snow = nday_data["daily_chance_of_snow"]
 
+        if forecast_data["location"]["region"] == "" or forecast_data["location"]["region"] == forecast_data["location"]["name"] :
+            found_city = forecast_data["location"]["name"]+", "+forecast_data["location"]["country"]
+        else: 
+            found_city = forecast_data["location"]["name"]+", "+forecast_data["location"]["region"]
         # Render variables to template 'forecast.html'
-        return render_template("forecast.html", tom_date=tomorrow, tom_url=tomorrow_url,
+        return render_template("forecast.html", location=found_city,tom_date=tomorrow, tom_url=tomorrow_url,
                                 tom_sunrise=tomorrow_sunrise, 
                                 tom_sunset=tomorrow_sunset, tom_desc=tomorrow_condition, 
                                 tom_high_celsius=tomorrow_c_high, tom_high_fahrenheit=tomorrow_f_high,
