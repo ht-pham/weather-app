@@ -126,10 +126,6 @@ def search():
         tomorrow_humidity = tomorrow_data["avghumidity"]
         tomorrow_rain = tomorrow_data["daily_chance_of_rain"]
         tomorrow_snow = tomorrow_data["daily_chance_of_snow"]
-=======
-        
->>>>>>> 19c34bf399be647082d2851a6db35a17689b9a93
-
 
         nday = str(forecast_data["forecast"]["forecastday"][2]["date"])
         nday_data = forecast_data["forecast"]["forecastday"][2]["day"]
