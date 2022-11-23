@@ -65,8 +65,8 @@ def search():
                         "Real-Feel C":current_data["current"]["feelslike_c"],"Real-Feel F":current_data["current"]["feelslike_f"]}
         wind = {"degree":current_data["current"]["wind_degree"],"dir":current_data["current"]["wind_dir"],
                 "speed_kph":current_data["current"]["wind_kph"],"speed_mph":current_data["current"]["wind_mph"]}
-
-
+        humidity= current_data["current"]["humidity"]
+        uv= current_data["current"]["uv"]
         current_pic = current_data["current"]["condition"]["icon"]
 
         return render_template("location.html",location=city, now_url=current_pic, now_desc=condition,
@@ -74,7 +74,7 @@ def search():
                 desc=condition,celsius=temp["C"],fahrenheit=temp["F"],
                 realfeel_c=temp["Real-Feel C"],realfeel_f=temp["Real-Feel F"],
                 degree=wind["degree"],direction=wind["dir"],
-                kmh=wind["speed_kph"],mph=wind["speed_mph"])
+                kmh=wind["speed_kph"],mph=wind["speed_mph"],humidity=humidity,uv=uv)
 
     elif (form.form["action"]=="forecast"):
         # URL for HTTP POST request for Forecast API
@@ -90,7 +90,7 @@ def search():
         # Exception Handling: invalid user input
         # When the user gives an unvalid input other than empty string
         # return 4xx Error 
-        if (forecast_response.status_code in range(400,501)):
+        if (forecast_response.status_code in range(400,500)):
             return render_template("index.html",error_message="No Matching Found Location")
         
         # Exception Handling: buggy codes/internal server issues
