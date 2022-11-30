@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <head>
-    <title>Precise Weather</title>
+    <title>WebWeather</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="{{ url_for('static', filename='script.js') }}"></script>
     <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    <h1>Precise Weather</h1>
+    <h1>WebWeather</h1>
 
 
     <div class="container">
@@ -14,7 +14,8 @@
             <label for="city">Search: </label>
             <input type="text" id="city" name="city" placeholder="Enter your city" />
             <button type="submit" name="action" value="now" id="now">Now</button>
-            <button type="submit" name="action" value="forecast" id="forecast">2-day Forecast</button>
+            <button type="submit" name="action" value="forecast" id="forecast">3-day Forecast</button>
+            <button type="submit" name="action" value="timezone" id="timezone">Time Zone</button>
             <br>
             <small style="color:#ffb703;">{{ error_message }}</small>
         </form>

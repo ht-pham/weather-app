@@ -19,20 +19,15 @@
     <h1>Welcome to {{ location }}</h1>
 
     <p>
-        <img src={{ now_url }} alt={{ now_desc }}>
+        Region: {{ tz_region }} <br>
+        Country: {{ tz_country }} <br>
+        Latitude: {{ tz_lat }} Degrees <br>
+        Longitude: {{ tz_long }} Degrees
     </p>
 
     <p>
-        Condition: {{ desc }} <br>
-        Temperature: {{ celsius }} C / {{ fahrenheit }} F <br>
-        Real-Feel Temperature: {{ realfeel_c }} C / {{ realfeel_f }} F <br>
-        Wind: {{ degree }}. {{ direction }} at speed of {{ kmh }} kph or {{ mph }} mph <br>
-        Humidity: {{ humidity }}. UV level: {{ uv }}
-    </p>
-
-    <p>
-        Local Time: {{ time }} <br>
-        Sunrise: {{ sunrise }}. Sunset: {{ sunset }}
+        Time Zone Name: {{ tz_id }} <br>
+        Local Time: {{ tz_time }}
     </p>
     
 </body>

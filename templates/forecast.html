@@ -11,56 +11,82 @@
             <input type="text" id="city" name="city" size="50%" placeholder="Enter your city" />
             <small></small>
             <button type="submit" name="action" value="now" id="now">Now</button>
-            <button type="submit" name="action" value="forecast" id="forecast">2-day Forecast</button>
+            <button type="submit" name="action" value="forecast" id="forecast">3-day Forecast</button>
+            <button type="submit" name="action" value="timezone" id="timezone">Time Zone</button>
         </form>
     </div>  
     <h1>Welcome to {{ location }}</h1>
-    <h1>Weather for {{ tom_date }}</h1>
-    <p>
-        <img src={{ tom_url }} alt={{ tom_desc }}>
-    </p>
 
-    <p>
-        Condition: {{ tom_desc }}
-    </p>
+    <div id="div1" style="padding-top:82px;padding-left:80px;padding-right:80px;float:left">
+        <h1>Weather for {{ tod_date }}</h1>
 
-    <p>
-        High: {{ tom_high_celsius }} C / {{ tom_high_fahrenheit }} F <br>
-        Low: {{ tom_low_celsius }} C / {{ tom_low_fahrenheit }} F <br>
-        Maximum Windspeed: {{ tom_kmh }} kph or {{ tom_mph }} mph <br>
-        Average Humidity: {{tom_hum}} <br>
-        Chance of Rain: {{tom_rain_chance}} <br>
-        Chance of Snow: {{tom_snow_chance}}
-    </p>
+        <p>
+            <img src={{ tod_url }} alt={{ tod_desc }}>
+        </p>
 
-    <p>
-        Sunrise: {{ tom_sunrise }}, Sunset: {{ tom_sunset }}
-    </p>
+        <p>
+            Condition: {{ tod_desc }}
+        </p>
 
-    <p>
-        <br>
-    </p>
+        <p>
+            High: {{ tod_high_celsius }} C / {{ tod_high_fahrenheit }} F <br>
+            Low: {{ tod_low_celsius }} C / {{ tod_low_fahrenheit }} F <br>
+            Maximum Windspeed: {{ tod_kmh }} kph or {{ tod_mph }} mph <br>
+            Average Humidity: {{tod_hum}} <br>
+            Chance of Rain: {{tod_rain_chance}} <br>
+            Chance of Snow: {{tod_snow_chance}}
+        </p>
 
-    <h1>Weather for {{ nd_date }}</h1>
-    <p>
-        <img src={{ nd_url }} alt={{ nd_desc }}>
-    </p>
+        <p>
+            Sunrise: {{ tod_sunrise }}, Sunset: {{ tod_sunset }}
+        </p>
+    </div>
 
-    <p>
-        Condition: {{ nd_desc }}
-    </p>
+    <div id="div2" style="padding:80px;float:left">
+        <h1>Weather for {{ tom_date }}</h1>
+        <p>
+            <img src={{ tom_url }} alt={{ tom_desc }}>
+        </p>
 
-    <p>
-        High: {{ nd_high_celsius }} C / {{ nd_high_fahrenheit }} F <br>
-        Low: {{ nd_low_celsius }} C / {{ nd_low_fahrenheit }} F <br>
-        Maximum Windspeed: {{ nd_kph }} kph or {{ nd_mph }} mph <br>
-        Average Humidity: {{nd_hum}} <br>
-        Chance of Rain: {{nd_rain_chance}} <br>
-        Chance of Snow: {{nd_snow_chance}}
-    </p>
+        <p>
+            Condition: {{ tom_desc }}
+        </p>
 
-    <p>
-        Sunrise: {{ nd_sunrise }}, Sunset: {{ nd_sunset }}
-    </p>
+        <p>
+            High: {{ tom_high_celsius }} C / {{ tom_high_fahrenheit }} F <br>
+            Low: {{ tom_low_celsius }} C / {{ tom_low_fahrenheit }} F <br>
+            Maximum Windspeed: {{ tom_kmh }} kph or {{ tom_mph }} mph <br>
+            Average Humidity: {{tom_hum}} <br>
+            Chance of Rain: {{tom_rain_chance}} <br>
+            Chance of Snow: {{tom_snow_chance}}
+        </p>
 
+        <p>
+            Sunrise: {{ tom_sunrise }}, Sunset: {{ tom_sunset }}
+        </p>
+    </div>
+
+    <div id="div3" style="padding-top: 80px;padding-left:60px;padding-right:60px;float:left">
+        <h1>Weather for {{ nd_date }}</h1>
+        <p>
+            <img src={{ nd_url }} alt={{ nd_desc }}>
+        </p>
+
+        <p>
+            Condition: {{ nd_desc }}
+        </p>
+
+        <p>
+            High: {{ nd_high_celsius }} C / {{ nd_high_fahrenheit }} F <br>
+            Low: {{ nd_low_celsius }} C / {{ nd_low_fahrenheit }} F <br>
+            Maximum Windspeed: {{ nd_kph }} kph or {{ nd_mph }} mph <br>
+            Average Humidity: {{nd_hum}} <br>
+            Chance of Rain: {{nd_rain_chance}} <br>
+            Chance of Snow: {{nd_snow_chance}}
+        </p>
+
+        <p>
+            Sunrise: {{ nd_sunrise }}, Sunset: {{ nd_sunset }}
+        </p>
+    </div>
 </body>
