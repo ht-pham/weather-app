@@ -88,6 +88,7 @@ def search():
         # Take the entered user input 'city' to the query
         querystring = {"q":city,"days":"3"}
 
+        
         # First API call for the real-time weather info in the city
         forecast_response = requests.request("GET", url, headers=config.headers, params=querystring)
         forecast_data = json.loads(forecast_response.text)
@@ -173,6 +174,8 @@ def search():
             found_city = forecast_data["location"]["name"]+", "+forecast_data["location"]["country"]
         else: 
             found_city = forecast_data["location"]["name"]+", "+forecast_data["location"]["region"]
+        # Update city to database
+        db.update_city(found_city)
         # Render variables to template 'forecast.html'
         return render_template("forecast.html", location=found_city,
                                 tod_date=today, tod_url=today_url,
