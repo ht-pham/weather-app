@@ -22,14 +22,29 @@ def update_city(name):
         city_ref = cities_ref.document(name).set({"lookup_count":1})
         
         
-def get_cities():
+def get_most_searched_city():
     cities = {}
-    
+    results = {}
+
+    # Get data from database as a dict
     fs_stream = cities_ref.stream()
     for city in fs_stream:
         cities[city.id] = city.to_dict()
 
-    return list(cities.keys())
+    # Get { city : #lookup }
+    for city in list(cities.keys()):
+        if city == 'default':
+            continue
+        results[city]= cities[city]["lookup_count"]
+    
+    most_looked_up = cities["default"]["lookup_count"]
+    name = "default"
+    for city in results.keys():
+        if results[city] > most_looked_up:
+            most_looked_up = results[city]
+            name = city
+    
+    return name+" ("+str(most_looked_up)+" times)"
 
 def update_visit_count():
 
