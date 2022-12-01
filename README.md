@@ -48,7 +48,7 @@ local-repo$ pip install -r requirements.txt
 local-repo$ flask --app main run
 ```
 #### Option 2: On your machine
-After installing the two required package (Flask and requests), in terminal:
+After installing the required packages (Flask,requests, and google-cloud-firestore), in terminal:
 1. Change directory to where 'main.py' is located: ```$ cd your-local-repo```
 2. Run the program: ```your-local-repo$ flask --app main run```
 ## Acknowledgement
