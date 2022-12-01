@@ -5,8 +5,9 @@ This is a final project for UTSA CS5573 Cloud Computing course in Fall 2022. The
 1. app.yaml: the configuration file for Google AppEngine Deployment
 2. 'static' folder: where JS and CSS files are saved
 3. 'templates' folder: where all .html files are saved
-4. requirements.txt: the list of required framework/library to run this application on local host.
+4. requirements.txt: the list of required framework/library and their versions to run this application on local host.
 5. main.py: the Flask application
+6. db.py: the Firestore database module
 ## Software Requirements
 1. Python 3.9+ or any latest version (see [link](https://www.python.org/downloads/) for lastest download)
 2. 'requests' module: for API calls\
