@@ -1,9 +1,14 @@
 from google.cloud import firestore
+from config import GOOGLE_APPLICATION_CREDENTIALS
 
-database = firestore.Client(project="cloud-computing-fall22")
+# Create database instance / Connect to Firestore Client API for the Google Cloud project
+database = firestore.Client(project=GOOGLE_APPLICATION_CREDENTIALS)
 
-cities_ref = database.collection('cities') # Collection 'cities'
+# Collection 'cities' for tracking all searched cities
+cities_ref = database.collection('cities')
 #default_city = cities_ref.document('default').set({"all visits":0})
+
+# Collection 'web_visitors' for tracking number of users
 web_visit_ref = database.collection('web_visitors')
 
 def update_city(name):
@@ -20,7 +25,6 @@ def update_city(name):
         cities_ref.document(name).set(updated_data)  
     else:
         city_ref = cities_ref.document(name).set({"lookup_count":1})
-        
         
 def get_most_searched_city():
     cities = {}
@@ -50,7 +54,11 @@ def update_visit_count():
 
     main_page = web_visit_ref.document('main_page').get().to_dict()
     main_page["visit_count"] += 1 
-    web_visit_ref.document('main_page').update({"visit_count":main_page["visit_count"]})
+    web_visit_ref.document('main_page').set({"visit_count":main_page["visit_count"]})
+
+def get_web_visitor_count():
+    main_page_ref = web_visit_ref.document('main_page').get().to_dict()
+    return main_page_ref["visit_count"]
     
 
         

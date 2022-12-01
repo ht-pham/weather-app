@@ -10,8 +10,10 @@ app = Flask(__name__,template_folder="templates")
 
 @app.route("/")
 def main_page():
+    db.update_visit_count()
+    visit_count = db.get_web_visitor_count()
     most_searched_city = db.get_most_searched_city()
-    return render_template("index.html",error_message="",city=most_searched_city)
+    return render_template("index.html",error_message="",visitor_count=visit_count,city=most_searched_city)
 
 @app.route("/search",methods=["POST"])
 def search():
@@ -21,7 +23,8 @@ def search():
 
     # Exception Handling: Empty Input ==> Refresh Main Page
     if city == "":
-        return render_template("index.html",error_message="Please enter a city",city=most_searched_city)
+        visit_count = db.get_web_visitor_count()
+        return render_template("index.html",error_message="Please enter a city",visitor_count=visit_count,city=most_searched_city)
         
     
     if(form.form["action"]=="now"):
@@ -44,7 +47,9 @@ def search():
         # When the user gives an unvalid input other than empty string
         # return 4xx Error 
         if (response_current.status_code in range(400,501)):
-            return render_template("index.html",error_message="No Matching Location Found",city=city)
+            visit_count = db.get_web_visitor_count()
+            most_searched_city = db.get_most_searched_city()
+            return render_template("index.html",error_message="No Matching Location Found",visitor_count=visit_count,city=most_searched_city)
         
         # Exception Handling: buggy codes/internal server issues
         # When some codes are not working properly
@@ -97,7 +102,7 @@ def search():
         # When the user gives an unvalid input other than empty string
         # return 4xx Error 
         if (forecast_response.status_code in range(400,500)):
-            return render_template("index.html",error_message="No Matching Location Found",city=city)
+            return render_template("index.html",error_message="No Matching Location Found",visitor_count=visit_count,city=most_searched_city)
         
         # Exception Handling: buggy codes/internal server issues
         # When some codes are not working properly
@@ -217,7 +222,7 @@ def search():
         # When the user gives an unvalid input other than empty string
         # return 4xx Error 
         if (timezone_response.status_code in range(400,500)):
-            return render_template("index.html",error_message="No Matching Location Found",city=city)
+            return render_template("index.html",error_message="No Matching Location Found",visitor_count=visit_count,city=most_searched_city)
         
         # Exception Handling: buggy codes/internal server issues
         # When some codes are not working properly
