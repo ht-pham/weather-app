@@ -1,10 +1,8 @@
 # Weather App
 ## Overview
-<<<<<<< HEAD
 This is a final project for UTSA CS5573 Cloud Computing course in Fall 2022. The project is built in Python with Flask framework and deployed by Google AppEngine. The web app is also capable of collecting metrics to perform statistics (i.e. number of times the web app was visited, and the most searched city for the weather forecast functions) by being connected to Google Cloud Firestore to which it automatically data and from which it gets data. The public URL for this application is [here](https://cloud-computing-fall22.uc.r.appspot.com).
-=======
-This is a final project for UTSA CS5573 Cloud Computing course in Fall 2022. The project is built in Python with Flask framework and deployed by Google AppEngine. The web app is also capable of collecting metrics to perform statistics (i.e. number of times the web app was visited, and the most searched city for the weather forecast functions) by being connected to Google Cloud Firestore to which it automatically adds data and from which it gets data. The public URL for this application is [here](https://cloud-computing-fall22.uc.r.appspot.com).
->>>>>>> 95820c8 (Updated Overview part of README.md)
+![Home Page](/images/webpage1.png)
+![Return Page](/images/webpage2.png)
 ## Structure of the project
 1. app.yaml: the configuration file for Google AppEngine Deployment
 2. 'static' folder: where JS and CSS files are saved
